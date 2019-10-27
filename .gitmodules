@@ -1,0 +1,12 @@
+[submodule "ansible/roles/pip"]
+	path = ansible/roles/pip
+	url = https://github.com/HauptJ/ansible-role-pip.git
+[submodule "ansible/roles/docker"]
+	path = ansible/roles/docker
+	url = https://github.com/HauptJ/ansible-role-docker-1.git
+[submodule "ansible/roles/kubernetes"]
+	path = ansible/roles/kubernetes
+	url = https://github.com/HauptJ/ansible-role-kubernetes.git
+[submodule "ansible/roles/helm"]
+	path = ansible/roles/helm
+	url = https://github.com/HauptJ/ansible-kubernetes-helm.git
