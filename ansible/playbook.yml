@@ -1,0 +1,12 @@
+---
+- name: Installs and configures a single node Kubernetes cluster on bare metal
+  hosts: vagrant
+  become: yes
+
+  roles:
+    - pip
+    - unarchive
+    - docker
+    - kubernetes
+    - helm
+

@@ -1,0 +1,7 @@
+[vagrant]
+localhost
+
+[vagrant:vars]
+ansible_connection=local
+ansible_user=vagrant
+ansible_become_pass=vagrant

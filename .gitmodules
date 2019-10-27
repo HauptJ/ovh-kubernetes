@@ -10,3 +10,6 @@
 [submodule "ansible/roles/helm"]
 	path = ansible/roles/helm
 	url = https://github.com/HauptJ/ansible-kubernetes-helm.git
+[submodule "roles/unarchive"]
+	path = roles/unarchive
+	url = https://github.com/HauptJ/ansible-unarchive-deps.git
