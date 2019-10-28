@@ -13,3 +13,6 @@
 [submodule "ansible/roles/unarchive"]
 	path = ansible/roles/unarchive
 	url = https://github.com/HauptJ/ansible-unarchive-deps.git
+[submodule ".\\ansible\\roles\\unarchive"]
+	path = .\\ansible\\roles\\unarchive
+	url = https://github.com/HauptJ/ansible-unarchive-deps.git
