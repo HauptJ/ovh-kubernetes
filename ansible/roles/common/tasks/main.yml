@@ -1,0 +1,16 @@
+ ---
+
+#- name: Update all packages
+#  dnf:
+#    name: "*"
+#    state: latest
+
+- name: Disable swap
+  shell: swapoff -a
+
+- name: Permanently disable swap
+  replace:
+    path: /etc/fstab
+    regexp: '^(\s*)([^#\n]+\s+)(\w+\s+)swap(\s+.*)$'
+    replace: '#\1\2\3swap\4'
+    backup: yes
