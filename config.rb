@@ -11,6 +11,6 @@ $hv_max_mem = "6144"
 $centos8_box = "generic/centos8"
 $centos8_box_ver = "1.9.38"
 
-# Fedora 28 Specific
-$fedora28_box = "generic/fedora28"
-$fedora28_box_ver = "1.9.38"
+# Fedora 29 Specific
+$fedora29_box = "generic/fedora29"
+$fedora29_box_ver = "1.9.38"

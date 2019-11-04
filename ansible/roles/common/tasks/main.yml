@@ -1,9 +1,13 @@
- ---
+---
+- name: Update all packages
+  dnf:
+    name: "*"
+    state: latest
 
-#- name: Update all packages
-#  dnf:
-#    name: "*"
-#    state: latest
+- name: Ensure libselinux-python is installed
+  dnf:
+    name: libselinux-python
+    state: present
 
 - name: Disable swap
   shell: swapoff -a

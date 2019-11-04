@@ -16,3 +16,9 @@
 [submodule ".\\ansible\\roles\\unarchive"]
 	path = .\\ansible\\roles\\unarchive
 	url = https://github.com/HauptJ/ansible-unarchive-deps.git
+[submodule ".\\ansible\\roles\\helm-tiller"]
+	path = .\\ansible\\roles\\helm-tiller
+	url = https://github.com/HauptJ/helm-tiller.git
+[submodule "ansible/roles/firewalld"]
+	path = ansible/roles/firewalld
+	url = https://github.com/HauptJ/ansible-role-fail2ban-firewalld.git

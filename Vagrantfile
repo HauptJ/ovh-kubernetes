@@ -40,18 +40,18 @@ Vagrant.configure("2") do |config|
     centos8hv.vm.provision "shell", path: "ansible/ansible.sh"
   end
 
-  config.vm.define "fedora28hv" do |fedora28hv|
-    fedora28hv.vm.box = $fedora28_box
-    fedora28hv.vm.box_version = $fedora28_box_ver
-    fedora28hv.ssh.username = $ssh_user
+  config.vm.define "fedora29hv" do |fedora29hv|
+    fedora29hv.vm.box = $fedora29_box
+    fedora29hv.vm.box_version = $fedora29_box_ver
+    fedora29hv.ssh.username = $ssh_user
 
     # NOTE: This is specific for my machine
     # Change bridge: $hv_net_bridge to the name of your
     # External V-Switch
-    fedora28hv.vm.network "public_network", bridge: $hv_net_bridge
+    fedora29hv.vm.network "public_network", bridge: $hv_net_bridge
 
-  	fedora28hv.vm.provider "hyperv" do |hv|
-  		hv.vmname = "Fedora28HVK8s"
+  	fedora29hv.vm.provider "hyperv" do |hv|
+  		hv.vmname = "Fedora29HVK8s"
   		# With nested virtualization, at least 2 CPUs are needed.
   		hv.cpus = $vcpus
   		# With nested virtualization, at least 4GB of memory is needed.
@@ -63,10 +63,9 @@ Vagrant.configure("2") do |config|
   	end
 
     # Provision box
+    fedora29hv.vm.provision "file", source: "ansible", destination: "/tmp/ansible"
 
-    #fedora28hv.vm.provision "ansible_local: do |ansible|
-    #  ansible.playbook = "ansible/playbook.yml"
-    #end
+    fedora29hv.vm.provision "shell", path: "ansible/ansible.sh"
   end
 
 end

@@ -2,13 +2,11 @@
 
 pushd /tmp
 
-#sudo dnf -y update
-
-sudo dnf -y install git ansible
+sudo dnf -y install ansible
 
 pushd /tmp/ansible
 
-ansible-playbook -i hosts playbook.yml
+ansible-playbook -i hosts playbook.yml --skip-tags "open_ports,close_ports"
 
 popd
 

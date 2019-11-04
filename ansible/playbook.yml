@@ -1,19 +1,7 @@
 ---
 - name: Installs and configures a single node Kubernetes cluster on bare metal
-  hosts: vagrant
+  hosts: all
   become: yes
-
-  vars:
-    pip_install_packages:
-      - name: docker
-    docker_edition: 'ce'
-    docker_package: "docker-{{ docker_edition }}-3:18.09.1-3.el7"
-    docker_package_state: present
-    docker_install_compose: true
-    docker_compose_version: "1.24.1"
-    docker_users:
-      - vagrant
-    kubernetes_allow_pods_on_master: true
 
   roles:
     - common
@@ -21,5 +9,6 @@
     - unarchive
     - docker
     - kubernetes
-    - helm
+    - helm-tiller
+    - firewalld
 
