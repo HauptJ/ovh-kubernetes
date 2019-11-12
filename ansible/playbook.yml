@@ -1,0 +1,14 @@
+---
+- name: Installs and configures a single node Kubernetes cluster on bare metal
+  hosts: all
+  become: yes
+
+  roles:
+    - common
+    - pip
+    - unarchive
+    - docker
+    - kubernetes
+    - helm-tiller
+    - firewalld
+
