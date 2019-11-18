@@ -43,6 +43,6 @@ open_ports:
 - 443/tcp
 
 # ports to close
-close_ports:
-- 80/tcp
-- 443/tcp
+#close_ports:
+#- 80/tcp
+#- 443/tcp

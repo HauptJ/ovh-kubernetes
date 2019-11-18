@@ -12,5 +12,5 @@ $centos8_box = "generic/centos8"
 $centos8_box_ver = "1.9.38"
 
 # Fedora 29 Specific
-$fedora29_box = "generic/fedora29"
-$fedora29_box_ver = "1.9.38"
+$fedora29_box = "roboxes/fedora29"
+$fedora29_box_ver = "2.0.2"
