@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 
+"""OVH Image.
+
+Usage:
+  image.py --version
+  image.py 
+
+Options:
+  --version     Show version
+
+"""
+
+
 import ovh
 import json
 import sys
-import getopt
-
+from docopt import docopt
 
 def reimage(ovhClient, ovhServerName, sshKeyName, hostName, ovhTemplateName, useDistribKernel=False):
-
 
     result = ovhClient.post(
     '/dedicated/server/'+ ovhServerName + '/install/start',
@@ -26,6 +36,25 @@ def reimage(ovhClient, ovhServerName, sshKeyName, hostName, ovhTemplateName, use
     )
     return result
 
+
+def getConsumerKey(ovhClient):
+
+    ck = ovhClient.new_conumer_key_request()
+
+    # Request full API access
+    ck.add_recursive_rules(ovh.API_READ_WRITE, '/')
+
+    # Request token
+    validation = ck.request()
+
+    print("Please visit %s to authenticate" % validation['validationUrl'])
+    input("and press Enter to continue...")
+
+    print("Welcome", ovhClient.get('/me')['firstname'])
+    print("Your 'consumer key is '%s'" % validation['consumerKey'])
+
+
+
 def printResult(result):
     print(json.dumps(result, indent=4))
 
@@ -36,7 +65,7 @@ def client():
     return ovhClient
 
 
-def main(argv):
+def main(arguments):
     option = ''
     ovhServerName = ''
     sshKeyName = ''
@@ -44,9 +73,6 @@ def main(argv):
     hostName = ''
     ovhTemplateName = ''
     useDistribKernel = ''
-
-    try:
-        opts, args = getopt.getopt(argv,"hi:o",["option="])
     
 
     # Function return output
@@ -60,4 +86,5 @@ def main(argv):
     
 
 if __name__== "__main__":
-    main(sys.argv[1:])
+    arguments = docopt(__doc__, version='OVH Image 0.1')
+    main(arguments)
