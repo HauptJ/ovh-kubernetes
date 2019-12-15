@@ -2,11 +2,13 @@
 
 pushd /tmp
 
-sudo dnf -y install ansible
+sudo dnf -y install python3 git
+
+sudo python3 -m pip install pyyaml ansible
 
 pushd /tmp/ansible
 
-ansible-playbook -i hosts playbook.yml --skip-tags "open_ports,close_ports"
+sudo ansible-playbook -i hosts playbook.yml
 
 popd
 
