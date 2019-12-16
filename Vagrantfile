@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
     fedora29hv.vm.network "public_network", bridge: $hv_net_bridge
 
   	fedora29hv.vm.provider "hyperv" do |hv|
-  		hv.vmname = "Fedora29HVK8s"
+  		hv.vmname = $fedora29_vmname
   		# With nested virtualization, at least 2 CPUs are needed.
   		hv.cpus = $vcpus
   		# With nested virtualization, at least 4GB of memory is needed.
@@ -66,6 +66,34 @@ Vagrant.configure("2") do |config|
     fedora29hv.vm.provision "file", source: "ansible", destination: "/tmp/ansible"
 
     fedora29hv.vm.provision "shell", path: "ansible/ansible.sh"
+  end
+
+  config.vm.define "fedora30hv" do |fedora30hv|
+    fedora30hv.vm.box = $fedora30_box
+    fedora30hv.vm.box_version = $fedora30_box_ver
+    fedora30hv.ssh.username = $ssh_user
+
+    # NOTE: This is specific for my machine
+    # Change bridge: $hv_net_bridge to the name of your
+    # External V-Switch
+    fedora30hv.vm.network "public_network", bridge: $hv_net_bridge
+
+  	fedora30hv.vm.provider "hyperv" do |hv|
+  		hv.vmname = $fedora30_vmname
+  		# With nested virtualization, at least 2 CPUs are needed.
+  		hv.cpus = $vcpus
+  		# With nested virtualization, at least 4GB of memory is needed.
+  		hv.memory = $vmem
+      # HV max memory
+      hv.maxmemory = $hv_max_mem
+      # Faster cloning and uses less disk space
+      hv.linked_clone = true
+  	end
+
+    # Provision box
+    fedora30hv.vm.provision "file", source: "ansible", destination: "/tmp/ansible"
+
+    fedora30hv.vm.provision "shell", path: "ansible/ansible.sh"
   end
 
 end

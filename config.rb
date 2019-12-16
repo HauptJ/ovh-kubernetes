@@ -14,3 +14,9 @@ $centos8_box_ver = "1.9.38"
 # Fedora 29 Specific
 $fedora29_box = "roboxes/fedora29"
 $fedora29_box_ver = "2.0.2"
+$fedora29_vmname = "Fedora29HVK8s"
+
+# Fedora 31 Specific
+$fedora30_box = "roboxes/fedora30"
+$fedora30_box_ver = "2.0.6"
+$fedora30_vmname = $fedora29_vmname = "Fedora30HVK8s"
