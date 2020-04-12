@@ -22,3 +22,7 @@
 [submodule "ansible/roles/firewalld"]
 	path = ansible/roles/firewalld
 	url = https://github.com/HauptJ/ansible-role-fail2ban-firewalld.git
+	branch = master
+[submodule "ansible/roles/bootstrap"]
+	path = ansible/roles/bootstrap
+	url = https://github.com/HauptJ/ansible-role-bootstrap.git
