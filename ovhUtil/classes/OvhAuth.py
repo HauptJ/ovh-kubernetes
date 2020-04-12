@@ -1,19 +1,22 @@
 import re
-import json
 import sys
+import ovh
 
 from typing_extensions import Final
+
 from classes.Client import Client
 from classes.OvhAuthError import OvhAuthError
+from ovh.exceptions import APIError
 
-class OvhAuth(client):
+
+class OvhAuth(Client):
     CONSUMER_KEY_REGEX: Final = r'(?<=(^consumer_key=))[a-zA-Z0-9]{32}'
 
     def __init__(self):
         Client.__init__(self)
 
 
-    def update_consumer_key(self, consumerKey, configFile='../ovh.conf'):
+    def update_consumer_key(self, consumerKey, configFile='./ovh.conf'):
         try:
             with open(configFile, 'r') as inFile:
                 ovhConfigTxt = inFile.read()
@@ -54,17 +57,23 @@ class OvhAuth(client):
         except IOError as e:
             raise OvhAuthError("Failed to retrieve consumer key - IOError: ", e)
 
+        except APIError as e:
+            raise OvhAuthError("Failed to retrieve consumer key - APIError", e)
+
         except:
             raise OvhAuthError("Failed to retrieve consumer key - Unknown Error", sys.exc_info()[0])
 
 
     def retrieve_api_apps(self):
         try:
-            res =  self._ovhClient.get('/me/api/application')
+            res = self._ovhClient.get('/me/api/application')
             Client.print_result(res)
 
         except IOError as e:
             raise OvhAuthError("Failed to retrieve a list of API Apps - IOError", e)
+
+        except APIError as e:
+            raise OvhAuthError("Failed to retrieve a list of API Apps - APIError", e)
 
         except:
             raise OvhAuthError("Failed to retrieve a list of API Apps - Unknown Error",  sys.exc_info()[0])

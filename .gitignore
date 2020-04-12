@@ -1,5 +1,6 @@
 .vagrant
 *.conf
-ovhUtil/ovh/
+ovhUtil/ovhEnv/
 .idea
 .pyc
+__pycache__
