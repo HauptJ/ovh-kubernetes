@@ -4,3 +4,4 @@ ovhUtil/ovhEnv/
 .idea
 .pyc
 __pycache__
+.git

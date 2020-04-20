@@ -1,14 +1,17 @@
 ---
 - name: Installs and configures a single node Kubernetes cluster on bare metal
-  hosts: all
+  hosts: ovhdev
   become: yes
 
   roles:
-    - common
-    - pip
-    - unarchive
-    - docker
-    - kubernetes
-    - helm-tiller
-    - firewalld
-
+    - ansible-pre-bootstrap
+    - ansible-role-bootstrap
+    - ansible-role-epel
+    - ansible-role-git
+    - ansible-role-firewall
+    - ansible-role-fail2ban
+    - ansible-unarchive-deps
+    - ansible-role-pip
+    - ansible-role-docker-1
+    - ansible-role-kubernetes
+    - ansible-kubernetes-helm
