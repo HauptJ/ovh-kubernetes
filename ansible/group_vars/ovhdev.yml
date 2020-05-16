@@ -11,7 +11,20 @@ firewall_services:
   - name: http
   - name: https
   - name: 6443
-    porto: tcp
+    protocol: tcp
+  - name: 25
+    protocol: tcp
+  - name: 143
+    protocol: tcp
+  - name: 465
+    protocol: tcp
+  - name: 587
+    protocol: tcp
+  - name: 993
+    protocol: tcp
+  - name: 995
+    protocol: tcp
+  
 #  - name: 10248
 #    porto: tcp
 

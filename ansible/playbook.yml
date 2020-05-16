@@ -4,14 +4,25 @@
   become: yes
 
   roles:
-    - ansible-pre-bootstrap
-    - ansible-role-bootstrap
-    - ansible-role-epel
-    - ansible-role-git
-    - ansible-role-firewall
-    - ansible-role-fail2ban
-    - ansible-unarchive-deps
-    - ansible-role-pip
-    - ansible-role-docker-1
-    - ansible-role-kubernetes
-    - ansible-kubernetes-helm
+    - role: ansible-pre-bootstrap
+      tags: pre
+    - role: ansible-role-bootstrap
+      tags: bootstrap
+    - role: ansible-role-epel
+      tags: epel
+    - role: ansible-role-git
+      tags: git
+    - role: ansible-role-firewall
+      tags: firewall
+    - role: ansible-role-fail2ban
+      tags: fail2ban
+    - role: ansible-unarchive-deps
+      tags: unarchive
+    - role: ansible-role-pip
+      tags: pip
+    - role: ansible-role-docker-1
+      tags: docker
+    - role: ansible-role-kubernetes
+      tags: k8s
+    - role: ansible-kubernetes-helm
+      tags: helm

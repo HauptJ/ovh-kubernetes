@@ -5,3 +5,4 @@ ovhUtil/ovhEnv/
 .pyc
 __pycache__
 .git
+ansible/hosts

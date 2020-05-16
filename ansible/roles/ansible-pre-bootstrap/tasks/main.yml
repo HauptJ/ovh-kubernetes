@@ -4,6 +4,13 @@
     name: "*"
     state: latest
 
+- name: Install CLI Utils
+  dnf:
+    name: 
+      - wget
+      - vim
+    state: latest
+
 #- name: Ensure libselinux-python is installed
 #  dnf:
 #    name: libselinux-python
