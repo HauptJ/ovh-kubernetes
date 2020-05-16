@@ -1,2 +1,8 @@
 .vagrant
 *.conf
+ovhUtil/ovhEnv/
+.idea
+.pyc
+__pycache__
+.git
+ansible/hosts

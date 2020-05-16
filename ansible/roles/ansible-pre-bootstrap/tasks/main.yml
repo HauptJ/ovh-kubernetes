@@ -1,0 +1,27 @@
+---
+- name: Update all packages
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Install CLI Utils
+  dnf:
+    name: 
+      - wget
+      - vim
+    state: latest
+
+#- name: Ensure libselinux-python is installed
+#  dnf:
+#    name: libselinux-python
+#    state: present
+
+- name: Disable swap
+  shell: swapoff -a
+
+- name: Permanently disable swap
+  replace:
+    path: /etc/fstab
+    regexp: '^(\s*)([^#\n]+\s+)(\w+\s+)swap(\s+.*)$'
+    replace: '#\1\2\3swap\4'
+    backup: yes

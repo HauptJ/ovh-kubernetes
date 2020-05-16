@@ -1,0 +1,11 @@
+[default]
+; general configuration: default endpoint
+endpoint=ovh-ca
+
+[ovh-ca]
+; configuration specific to 'ovh-eu' endpoint
+application_key=test
+application_secret=test
+; uncomment following line when writing a script application
+; with a single consumer key.
+consumer_key=byb7NafakeN73atestIA0Jk6Kt3stXSAAAAAAA
