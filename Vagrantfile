@@ -23,15 +23,13 @@ Vagrant.configure("2") do |config|
     centos8hv.vm.network "public_network", bridge: $hv_net_bridge
 
   	centos8hv.vm.provider "hyperv" do |hv|
-  		hv.vmname = "Centos8HVK8s"
-  		# With nested virtualization, at least 2 CPUs are needed.
+  		hv.vmname = $hv_vm_name
   		hv.cpus = $vcpus
-  		# With nested virtualization, at least 4GB of memory is needed.
   		hv.memory = $vmem
       # HV max memory
       hv.maxmemory = $hv_max_mem
       # Faster cloning and uses less disk space
-      hv.linked_clone = true
+      hv.linked_clone = false
   	end
 
     # Provision box
@@ -40,33 +38,27 @@ Vagrant.configure("2") do |config|
     centos8hv.vm.provision "shell", path: "ansible/ansible.sh"
   end
 
-  config.vm.define "fedora29hv" do |fedora29hv|
-    fedora29hv.vm.box = $fedora29_box
-    fedora29hv.vm.box_version = $fedora29_box_ver
-    fedora29hv.ssh.username = $ssh_user
+  config.vm.define "centos8vb" do |centos8vb|
+    centos8vb.vm.box = $centos8_box
+    centos8vb.vm.box_version = $centos8_box_ver
+    centos8vb.ssh.username = $ssh_user
+    centos8vb.vm.synced_folder $host_folder, $vm_folder
 
-    # NOTE: This is specific for my machine
-    # Change bridge: $hv_net_bridge to the name of your
-    # External V-Switch
-    fedora29hv.vm.network "public_network", bridge: $hv_net_bridge
+    centos8vb.vm.network "private_network", ip: $vb_private_ip
 
-  	fedora29hv.vm.provider "hyperv" do |hv|
-  		hv.vmname = "Fedora29HVK8s"
-  		# With nested virtualization, at least 2 CPUs are needed.
-  		hv.cpus = $vcpus
-  		# With nested virtualization, at least 4GB of memory is needed.
-  		hv.memory = $vmem
-      # HV max memory
-      hv.maxmemory = $hv_max_mem
+    centos8vb.vm.provider "virtualbox" do |vb|
+      vb.name = $vb_vm_name
+      vb.cpus = $vcpus
+      vb.memory = $vmem
       # Faster cloning and uses less disk space
-      hv.linked_clone = true
-  	end
+      vb.linked_clone = false
+    end
 
     # Provision box
-    fedora29hv.vm.provision "file", source: "ansible", destination: "/tmp/ansible"
+    centos8vb.vm.provision "file", source: "ansible", destination: "/tmp/ansible"
 
-    fedora29hv.vm.provision "shell", path: "ansible/ansible.sh"
+    centos8vb.vm.provision "shell", path: "ansible/ansible.sh"
   end
-
+  
 end
 
