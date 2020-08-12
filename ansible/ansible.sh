@@ -8,7 +8,7 @@ sudo dnf -y install python3 git ansible
 
 pushd /tmp/ansible
 
-sudo ansible-playbook -i hosts vagrant.yml
+sudo ansible-playbook -i hosts-vagrant vagrant.yml
 
 popd
 
