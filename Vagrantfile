@@ -13,8 +13,8 @@ end
 Vagrant.configure("2") do |config|
 
   config.vm.define "centos8hv" do |centos8hv|
-    centos8hv.vm.box = $centos8_box
-    centos8hv.vm.box_version = $centos8_box_ver
+    centos8hv.vm.box = $centos8hv_box
+    centos8hv.vm.box_version = $centos8hv_box_ver
     centos8hv.ssh.username = $ssh_user
 
     # NOTE: This is specific for my machine
@@ -39,8 +39,8 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "centos8vb" do |centos8vb|
-    centos8vb.vm.box = $centos8_box
-    centos8vb.vm.box_version = $centos8_box_ver
+    centos8vb.vm.box = $centos8vb_box
+    centos8vb.vm.box_version = $centos8vb_box_ver
     centos8vb.ssh.username = $ssh_user
     centos8vb.vm.synced_folder $host_folder, $vm_folder
 
