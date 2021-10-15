@@ -22,6 +22,20 @@ Vagrant.configure("2") do |config|
     # External V-Switch
     centos8hv.vm.network "public_network", bridge: $hv_net_bridge
 
+    # Disable SMB Share
+    centos8hv.vm.synced_folder ".", "/vagrant", disabled: true
+
+    # Usefull NOTE:
+    # Export VAGRANT_SMB_USERNAME: $env:VAGRANT_SMB_USERNAME="username"
+    # Export VAGRANT_SMB_PASSWORD: $env:VAGRANT_SMB_PASSWORD="password"
+
+    # Configure SMB Directory Sharing
+    #	centos8hv.vm.synced_folder '.', '/vagrant', {
+    #		type: 'smb', mount_options: ['vers=3.0'],
+    #		smb_username: ENV['VAGRANT_SMB_USERNAME'],
+    #		smb_password: ENV['VAGRANT_SMB_PASSWORD']
+    #	}
+
   	centos8hv.vm.provider "hyperv" do |hv|
   		hv.vmname = $hv_vm_name
   		hv.cpus = $vcpus

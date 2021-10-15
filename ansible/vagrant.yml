@@ -10,12 +10,12 @@
       tags: bootstrap
     - role: ansible-role-epel
       tags: epel
-    #- role: ansible-role-git
-    #  tags: git
-    - role: ansible-role-firewall
-      tags: firewall
-    - role: ansible-role-fail2ban
-      tags: fail2ban
+    - role: ansible-role-git
+      tags: git
+    #- role: ansible-role-firewall
+    #  tags: firewall
+    #- role: ansible-role-fail2ban
+    #  tags: fail2ban
     - role: ansible-unarchive-deps
       tags: unarchive
     - role: ansible-role-pip
